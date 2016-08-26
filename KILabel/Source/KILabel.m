@@ -303,7 +303,7 @@ NSString * const KILabelLinkKey = @"link";
     }
     else
     {
-        self.linkRanges = nil;
+        self.linkRanges = [self getRangesForLinksInAttributedString: attributedString];
     }
     
     if (_textStorage)
@@ -318,6 +318,22 @@ NSString * const KILabelLinkKey = @"link";
         [_textStorage addLayoutManager:_layoutManager];
         [_layoutManager setTextStorage:_textStorage];
     }
+}
+
+- (NSArray *)getRangesForLinksInAttributedString:(NSAttributedString *)attributedString {
+    NSMutableArray *ranges = [NSMutableArray array];
+    [attributedString enumerateAttribute:NSLinkAttributeName
+                                 inRange:NSMakeRange(0, attributedString.length)
+                                 options:0
+                              usingBlock:^(NSString *link, NSRange range, BOOL *stop) {
+                                  if (link) {
+                                      [ranges addObject:@{KILabelLinkTypeKey: @(KILinkTypeURL),
+                                              KILabelRangeKey: [NSValue valueWithRange:range],
+                                              KILabelLinkKey: link,
+                                      }];
+                                  }
+                              }];
+    return ranges;
 }
 
 // Returns attributed string attributes based on the text properties set on the label.

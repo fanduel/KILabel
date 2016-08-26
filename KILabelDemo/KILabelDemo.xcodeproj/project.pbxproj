@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60959C6CF4D79B7750CA8C21 /* ImageAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6095933681727D5190074C4D /* ImageAttachment.m */; };
 		C97DB2EE183A56EF0028EA5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97DB2ED183A56EF0028EA5C /* Foundation.framework */; };
 		C97DB2F0183A56EF0028EA5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97DB2EF183A56EF0028EA5C /* CoreGraphics.framework */; };
 		C97DB2F2183A56EF0028EA5C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97DB2F1183A56EF0028EA5C /* UIKit.framework */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		609590D4225585E695BEBE27 /* ImageAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAttachment.h; sourceTree = "<group>"; };
+		6095933681727D5190074C4D /* ImageAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAttachment.m; sourceTree = "<group>"; };
 		C97DB2EA183A56EF0028EA5C /* KILabelDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KILabelDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97DB2ED183A56EF0028EA5C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C97DB2EF183A56EF0028EA5C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -137,6 +140,8 @@
 				C97DB303183A56EF0028EA5C /* KIViewController.m */,
 				C97DB305183A56EF0028EA5C /* Images.xcassets */,
 				C97DB2F4183A56EF0028EA5C /* Supporting Files */,
+				6095933681727D5190074C4D /* ImageAttachment.m */,
+				609590D4225585E695BEBE27 /* ImageAttachment.h */,
 			);
 			path = KILabelDemo;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				C97DB2FE183A56EF0028EA5C /* KIAppDelegate.m in Sources */,
 				C9ABA08A1AEE5A8600363407 /* KILabelTableViewController.m in Sources */,
 				C97DB2FA183A56EF0028EA5C /* main.m in Sources */,
+				60959C6CF4D79B7750CA8C21 /* ImageAttachment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

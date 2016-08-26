@@ -9,6 +9,7 @@
 #import "KILabelTableViewController.h"
 
 #import "KILabelTableViewCell.h"
+#import "ImageAttachment.h"
 
 NSString * const KILabelCellIdentifier = @"labelCell";
 
@@ -76,7 +77,28 @@ NSString * const KILabelCellIdentifier = @"labelCell";
                               @"tweet. Tweets are limited to 140 characters, here's long link to "
                               @"explain why this is the case http://www.adweek.com/socialtimes/the-reason-for-the-160-character-text-message-and-140-character-twitter-length-limits/4914.";
             break;
-            
+
+        case 3:
+            cell.label.automaticLinkDetectionEnabled = NO;
+            cell.label.attributedText = [self attributedStringWithVariousLinks];
+            break;
+
+        case 4:
+            cell.label.automaticLinkDetectionEnabled = NO;
+            cell.label.attributedText = [self attributedStringWithLinkImageAtLeft];
+            break;
+
+        case 5:
+            cell.label.automaticLinkDetectionEnabled = NO;
+            cell.label.attributedText = [self attributedStringWithLinkImageInMiddle];
+            break;
+
+        case 6:
+            cell.label.automaticLinkDetectionEnabled = NO;
+            cell.label.attributedText = [self attributedStringWithLinkImageAtRight];
+            break;
+
+
         default:
             cell.label.text = @"This row has no content!";
             break;
@@ -92,6 +114,69 @@ NSString * const KILabelCellIdentifier = @"labelCell";
     cell.label.hashtagLinkTapHandler = tapHandler;
     
     return cell;
+}
+
+- (NSAttributedString *)attributedStringWithVariousLinks {
+    NSMutableAttributedString *enhancedName = [[NSMutableAttributedString alloc] init];
+    NSTextAttachment *textAttachment = [[ImageAttachment alloc] init];
+    textAttachment.image = [UIImage imageNamed:@"camera"];
+    NSMutableAttributedString *inlineImage = [[NSAttributedString attributedStringWithAttachment:textAttachment] mutableCopy];
+    [inlineImage addAttribute: NSLinkAttributeName value: @"http://www.cameraimage.com" range: NSMakeRange(0, inlineImage.length)];
+    [enhancedName appendAttributedString:inlineImage];
+    [enhancedName appendAttributedString:[[NSAttributedString alloc] initWithString:@"\u202f"]];
+    NSMutableAttributedString *nameAttrString = [[NSMutableAttributedString alloc] initWithString:@"Ian Propriate"];
+    [nameAttrString addAttribute: NSLinkAttributeName value: @"http://www.nametext.com" range: NSMakeRange(0, nameAttrString.length)];
+    [enhancedName appendAttributedString:nameAttrString];
+    [enhancedName appendAttributedString:[[NSAttributedString alloc] initWithString:@" http://www.justalinkintext.com/"]];
+    return enhancedName;
+}
+
+- (NSAttributedString *)attributedStringWithLinkImageAtLeft {
+    NSMutableAttributedString *enhancedName = [[NSMutableAttributedString alloc] init];
+
+    NSTextAttachment *imageAttachment = [[ImageAttachment alloc] init];
+    imageAttachment.image = [UIImage imageNamed:@"camera"];
+    NSMutableAttributedString *inlineImageAttrString = [[NSAttributedString attributedStringWithAttachment:imageAttachment] mutableCopy];
+    [inlineImageAttrString addAttribute: NSLinkAttributeName value: @"http://www.cameraimage.com" range: NSMakeRange(0, inlineImageAttrString.length)];
+    [enhancedName appendAttributedString:inlineImageAttrString];
+
+    [enhancedName appendAttributedString:[[NSAttributedString alloc] initWithString:@"\u202f"]];
+    [enhancedName appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"Right Text"]];
+
+    return enhancedName;
+}
+
+- (NSAttributedString *)attributedStringWithLinkImageInMiddle {
+    NSMutableAttributedString *enhancedName = [[NSMutableAttributedString alloc] init];
+
+    [enhancedName appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"Left text"]];
+    [enhancedName appendAttributedString:[[NSAttributedString alloc] initWithString:@"\u202f"]];
+
+    NSTextAttachment *imageAttachment = [[ImageAttachment alloc] init];
+    imageAttachment.image = [UIImage imageNamed:@"camera"];
+    NSMutableAttributedString *inlineImageAttrString = [[NSAttributedString attributedStringWithAttachment:imageAttachment] mutableCopy];
+    [inlineImageAttrString addAttribute: NSLinkAttributeName value: @"http://www.cameraimage.com" range: NSMakeRange(0, inlineImageAttrString.length)];
+    [enhancedName appendAttributedString:inlineImageAttrString];
+
+    [enhancedName appendAttributedString:[[NSAttributedString alloc] initWithString:@"\u202f"]];
+    [enhancedName appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"Right Text"]];
+
+    return enhancedName;
+}
+
+- (NSAttributedString *)attributedStringWithLinkImageAtRight {
+    NSMutableAttributedString *enhancedName = [[NSMutableAttributedString alloc] init];
+
+    [enhancedName appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"Left text"]];
+    [enhancedName appendAttributedString:[[NSAttributedString alloc] initWithString:@"\u202f"]];
+
+    NSTextAttachment *imageAttachment = [[ImageAttachment alloc] init];
+    imageAttachment.image = [UIImage imageNamed:@"camera"];
+    NSMutableAttributedString *inlineImageAttrString = [[NSAttributedString attributedStringWithAttachment:imageAttachment] mutableCopy];
+    [inlineImageAttrString addAttribute: NSLinkAttributeName value: @"http://www.cameraimage.com" range: NSMakeRange(0, inlineImageAttrString.length)];
+    [enhancedName appendAttributedString:inlineImageAttrString];
+
+    return enhancedName;
 }
 
 /**
