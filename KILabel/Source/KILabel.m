@@ -305,7 +305,11 @@ NSString * const KILabelLinkKey = @"link";
     {
         self.linkRanges = [self getRangesForLinksInAttributedString: attributedString];
     }
-    
+
+    if (!attributedString) {
+        return;
+    }
+
     if (_textStorage)
     {
         // Set the string on the storage
