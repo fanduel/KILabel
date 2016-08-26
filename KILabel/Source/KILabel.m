@@ -695,7 +695,7 @@ NSString * const KILabelLinkKey = @"link";
         NSString *touchedSubstring = [touchedLink objectForKey:KILabelLinkKey];
         KILinkType linkType = (KILinkType)[[touchedLink objectForKey:KILabelLinkTypeKey] intValue];
         
-        [self receivedActionForLinkType:linkType string:touchedSubstring range:range];
+        [self receivedActionForLinkType:linkType string:touchedSubstring range:range touchLocation: touchLocation];
     }
     else
     {
@@ -713,30 +713,31 @@ NSString * const KILabelLinkKey = @"link";
     self.selectedRange = NSMakeRange(0, 0);
 }
 
-- (void)receivedActionForLinkType:(KILinkType)linkType string:(NSString*)string range:(NSRange)range
+- (void)receivedActionForLinkType:(KILinkType)linkType string:(NSString*)string range:(NSRange)range touchLocation:(CGPoint)touchLocation
 {
+    CGRect rect = (CGRect){touchLocation, CGSizeZero};
     switch (linkType)
     {
-    case KILinkTypeUserHandle:
-        if (_userHandleLinkTapHandler)
-        {
-            _userHandleLinkTapHandler(self, string, range);
-        }
-        break;
-        
-    case KILinkTypeHashtag:
-        if (_hashtagLinkTapHandler)
-        {
-            _hashtagLinkTapHandler(self, string, range);
-        }
-        break;
-        
-    case KILinkTypeURL:
-        if (_urlLinkTapHandler)
-        {
-            _urlLinkTapHandler(self, string, range);
-        }
-        break;
+        case KILinkTypeUserHandle:
+            if (_userHandleLinkTapHandler)
+            {
+                _userHandleLinkTapHandler(self, string, range, rect);
+            }
+            break;
+
+        case KILinkTypeHashtag:
+            if (_hashtagLinkTapHandler)
+            {
+                _hashtagLinkTapHandler(self, string, range, rect);
+            }
+            break;
+
+        case KILinkTypeURL:
+            if (_urlLinkTapHandler)
+            {
+                _urlLinkTapHandler(self, string, range, rect);
+            }
+            break;
     }
 }
 

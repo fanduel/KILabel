@@ -89,7 +89,7 @@ typedef NS_OPTIONS(NSUInteger, KILinkTypeOption)
  *  @param string Content of the link that was tapped, includes @ or # tokens
  *  @param range  The range of the string within the label's text
  */
-typedef void (^KILinkTapHandler)(KILabel *label, NSString *string, NSRange range);
+typedef void (^KILinkTapHandler)(KILabel *label, NSString *string, NSRange range, CGRect rect);
 
 extern NSString * const KILabelLinkTypeKey;
 extern NSString * const KILabelRangeKey;
